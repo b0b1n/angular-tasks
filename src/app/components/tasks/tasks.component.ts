@@ -8,6 +8,10 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnInit {
+  myTask: TaskInterface = {
+    label : '',
+    completed : false
+  }
   tasks: TaskInterface[] = [];
 
   constructor(private taskService: TaskService) {}
@@ -16,5 +20,14 @@ export class TasksComponent implements OnInit {
   }
   getTasks() {
     this.taskService.findAll().subscribe((tasks) => (this.tasks = tasks));
+  }
+  deleteTask(id: any) {
+    this.taskService.delete(id).subscribe(() => {
+      this.tasks = this.tasks.filter((t) => t.id != id);
+    });
+  }
+
+  persistTask(){
+    return this.taskService.persist(this.myTask).subscribe((task)=>this.tasks = [task, ...this.tasks]);
   }
 }
