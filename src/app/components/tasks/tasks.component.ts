@@ -9,9 +9,9 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TasksComponent implements OnInit {
   myTask: TaskInterface = {
-    label : '',
-    completed : false
-  }
+    label: '',
+    completed: false,
+  };
   tasks: TaskInterface[] = [];
 
   constructor(private taskService: TaskService) {}
@@ -27,7 +27,17 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  persistTask(){
-    return this.taskService.persist(this.myTask).subscribe((task)=>this.tasks = [task, ...this.tasks]);
+  persistTask() {
+    return this.taskService.persist(this.myTask).subscribe((task) => {
+      this.tasks = [task, ...this.tasks];
+      this.resetTask();
+    });
+  }
+
+  resetTask() {
+    this.myTask = {
+      label: '',
+      completed: false,
+    };
   }
 }
