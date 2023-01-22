@@ -2,7 +2,7 @@
   "tasks": [
     {
       "id": 1,
-      "label": "Learn Angular",
+      "label": "Learn Angulars",
       "completed": false
     },
     {
@@ -11,9 +11,9 @@
       "completed": true
     },
     {
-      "label": "ok",
+      "label": "Learn Spring",
       "completed": false,
-      "id": 4
+      "id": 3
     }
   ]
 }
